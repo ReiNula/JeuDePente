@@ -1,7 +1,6 @@
 /** Classe joueur modélisant un joueur */
 
 import java.util.Scanner;
-import java.util.Random;
 
 public class Joueur {
 /************* Attributs *************/
