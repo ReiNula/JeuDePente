@@ -54,12 +54,12 @@ public class Main {
         f.rafraichir();
 
         /* génération du tab statique 19*19*/
-        int[][] tableau;
+        int[][] etat_damier;
           
-        tableau = new int[19][19];
-        for (int i = 0;i < tableau.length; i++) {
-            for (int j = 0;j < tableau[i].length;j++) {
-                tableau[i][j] = 0;
+        etat_damier = new int[19][19];
+        for (int i = 0;i < etat_damier.length; i++) {
+            for (int j = 0;j < etat_damier[i].length;j++) {
+                etat_damier[i][j] = 0;
             }
         } 
 
@@ -134,83 +134,54 @@ public class Main {
      
         f.rafraichir();
 
-          /* compteur de test */
-          int i=0;
-          /* changer la condition du while si la var était win existe */
-          while(i<=40) {
-              if (mouse.getClicGauche()) {
-                f.supprimer(whoPlays);
-                if (g.player == 0){
-                    g.player = 1 ; 
-                    g.nextplayer = 0;
-                }else{
-                    g.player = 0;
-                    g.nextplayer = 1;
-                }  
-                String change = playername ;
-                playername = nextplayername; 
-                nextplayername = change ;  
-                Point mousePosition = mouse.getPosition();
-                int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
-                int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
-                Point intersection = new Point(xIntersection, yIntersection);
-
-                System.out.println(intersection);
-                Cercle pion = new Cercle(Couleur.BLEU, intersection, 5, true);
+        /* compteur de test */
+        int i=0;
+        /* changer la condition du while si la var était win existe */
+        while(i<=40) {
+            if (mouse.getClicGauche()) {
+            f.supprimer(whoPlays);
+            if (g.player == 0){
+                g.player = 1 ; 
+                g.nextplayer = 0;
+            }else{
+                g.player = 0;
+                g.nextplayer = 1;
+            }  
+            String change = playername ;
+            playername = nextplayername; 
+            nextplayername = change ;
+            Point mousePosition = mouse.getPosition();
+            int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
+            int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
+            int cases_x=(xIntersection-240)/40;
+            int cases_y=(yIntersection-40)/40;
+            etat_damier[cases_x][cases_y]=1;
+            System.out.println(etat_damier);
+            System.out.println("cases en abscysse :"+cases_x);
+            System.out.println("cases en ordonné :"+cases_y);
+            Point intersection = new Point(xIntersection, yIntersection);
+            i=i+1;
+            Boolean play = true;
+            //Affiche un pion bleu si c'est le joueur 1 qui joue et rouge pour le 2ème 
+            if (g.player == 0){
+                Cercle pion = new Cercle(Couleur.BLEU, intersection, 10, true);
                 f.ajouter(pion);
-                play = true;
+            }else {
+                Cercle pion2 = new Cercle(Couleur.ROUGE, intersection, 10, true);
+                f.ajouter(pion2);
             }
+            i=i+1; 
+            whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
+            f.ajouter(whoPlays);   
+            f.rafraichir();
+            }
+            
             f.rafraichir();
             try {
                 Thread.sleep(1);
             } catch (Exception e) {
 
                 }
-        }
-
-          /* compteur de test */
-          int i=0;
-          /* changer la condition du while si la var était win existe */
-          while(i<=40) {
-              if (mouse.getClicGauche()) {
-                  Point mousePosition = mouse.getPosition();
-                  int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
-                  int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
-                  cases_x=(xIntersection-240)/40;
-                  cases_y=(yIntersection-40)/40;
-                  etat_damier [case_x][case_y]=1;
-                  System.out.println(etat_damier);
-                  System.out.println("cases en abscysse :"+cases_x);
-                  System.out.println("cases en ordonné :"+cases_y);
-                  System.out.println(xIntersection);
-                  System.out.println(yIntersection);
-                  System.out.println(mousePosition);
-                  Point intersection = new Point(xIntersection, yIntersection);
-                  System.out.println(intersection);
-                  Cercle pion = new Cercle(Couleur.BLEU, intersection, 5, true);
-                  f.ajouter(pion);
-                  i=i+1;
-               //Affiche un pion bleu si c'est le joueur 1 qui joue et rouge pour le 2ème 
-                if (g.player == 0){
-                    Cercle pion = new Cercle(Couleur.BLEU, intersection, 10, true);
-                    f.ajouter(pion);
-                }else {
-                    Cercle pion = new Cercle(Couleur.ROUGE, intersection, 10, true);
-                    f.ajouter(pion);
-                }
-                
-                i=i+1; 
-                whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
-                f.ajouter(whoPlays);   
-                f.rafraichir();
-              }
-              
-              f.rafraichir();
-              try {
-                  Thread.sleep(1);
-              } catch (Exception e) {
-  
-                  }
           }
     }
 }
