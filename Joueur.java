@@ -15,7 +15,7 @@ public class Joueur {
     // Constructeur par défaut
     public Joueur() {
         this.name = "Joueur";
-        this.color = "BLANC";
+        this.color = "JAUNE";
         this.active = false;
         this.win =false;
         this.pairCaptured = 0;
