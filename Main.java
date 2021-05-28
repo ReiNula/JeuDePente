@@ -153,14 +153,11 @@ public class Main {
                 Point mousePosition = mouse.getPosition();
                 int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
                 int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
-                System.out.println(xIntersection);
-                System.out.println(yIntersection);
-                System.out.println(mousePosition);
                 Point intersection = new Point(xIntersection, yIntersection);
+
                 System.out.println(intersection);
                 Cercle pion = new Cercle(Couleur.BLEU, intersection, 5, true);
                 f.ajouter(pion);
-<<<<<<< HEAD
                 play = true;
             }
             f.rafraichir();
@@ -169,7 +166,7 @@ public class Main {
             } catch (Exception e) {
 
                 }
-        }*/
+        }
 
           /* compteur de test */
           int i=0;
@@ -193,13 +190,19 @@ public class Main {
                   Cercle pion = new Cercle(Couleur.BLEU, intersection, 5, true);
                   f.ajouter(pion);
                   i=i+1;
-=======
+               //Affiche un pion bleu si c'est le joueur 1 qui joue et rouge pour le 2ème 
+                if (g.player == 0){
+                    Cercle pion = new Cercle(Couleur.BLEU, intersection, 10, true);
+                    f.ajouter(pion);
+                }else {
+                    Cercle pion = new Cercle(Couleur.ROUGE, intersection, 10, true);
+                    f.ajouter(pion);
+                }
+                
                 i=i+1; 
                 whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
                 f.ajouter(whoPlays);   
                 f.rafraichir();
-               
->>>>>>> 8405e23ad0211ea4847d3b583ed604e8600a268f
               }
               
               f.rafraichir();
