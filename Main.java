@@ -52,6 +52,17 @@ public class Main {
         Texte j2Menu = new Texte(new String("Joueur 2 : ") + j2.getName(), textFont50, new Point(middle,300));
         f.ajouter(j2Menu);
         f.rafraichir();
+
+        /* génération du tab statique 19*19*/
+        int[][] tableau;
+          
+        tableau = new int[19][19];
+        for (int i = 0;i < tableau.length; i++) {
+            for (int j = 0;j < tableau[i].length;j++) {
+                tableau[i][j] = 0;
+            }
+        } 
+
         // Passage à l'interface de jeu quand entrée est appuyé
         while(menu) {
             if (keyboard.getEntreeTape()) {
@@ -151,6 +162,12 @@ public class Main {
                   Point mousePosition = mouse.getPosition();
                   int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
                   int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
+                  cases_x=(xIntersection-240)/40;
+                  cases_y=(yIntersection-40)/40;
+                  etat_damier [case_x][case_y]=1;
+                  System.out.println(etat_damier);
+                  System.out.println("cases en abscysse :"+cases_x);
+                  System.out.println("cases en ordonné :"+cases_y);
                   System.out.println(xIntersection);
                   System.out.println(yIntersection);
                   System.out.println(mousePosition);
