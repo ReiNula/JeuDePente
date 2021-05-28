@@ -36,7 +36,7 @@ public class Main {
         Font textFont = new Font("Arial", Font.BOLD,20);
         Font textFont50 = new Font("Arial", Font.BOLD,50);
         // Background
-        Texture game = new Texture("img/test.png",new Point(0,0));
+        Texture game = new Texture("img/test.jpg",new Point(0,0));
         f.ajouter(game);
 
         Texte gameName = new Texte(new String("Jeu de Pente"), textFont, new Point(middle,780));
@@ -107,12 +107,15 @@ public class Main {
 
         // Désigne le joueur qui commence
         String playername;
+        String nextplayername; 
         if (g.player == 0) {
             playername = j1.getName();
+            nextplayername = j2.getName();
         } else {
             playername = j2.getName();
+            nextplayername = j1.getName();
         }
-        Texte whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue"), textFont, new Point(middle,20));
+        Texte whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
         f.ajouter(whoPlays);
         f.rafraichir();
 
