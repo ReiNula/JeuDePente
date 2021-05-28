@@ -116,27 +116,43 @@ public class Main {
             f.ajouter(listeLignesVert.get(i));
         }
 
-        // Désigne le joueur qui commence
+        // Désigne le joueur qui commence et celui qui joue après
         String playername;
         String nextplayername; 
         if (g.player == 0) {
             playername = j1.getName();
             nextplayername = j2.getName();
+            g.nextplayer = 1;
         } else {
             playername = j2.getName();
             nextplayername = j1.getName();
+            g.nextplayer = 0;
         }
-        Texte whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
+
+        Texte whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
         f.ajouter(whoPlays);
+     
         f.rafraichir();
 
-        // Dessine un pion en fonction du clic de la souris
-        /*boolean play = false;
-        while(!play) {
-            if (mouse.getClicGauche()) {
+          /* compteur de test */
+          int i=0;
+          /* changer la condition du while si la var était win existe */
+          while(i<=40) {
+              if (mouse.getClicGauche()) {
+                f.supprimer(whoPlays);
+                if (g.player == 0){
+                    g.player = 1 ; 
+                    g.nextplayer = 0;
+                }else{
+                    g.player = 0;
+                    g.nextplayer = 1;
+                }  
+                String change = playername ;
+                playername = nextplayername; 
+                nextplayername = change ;  
                 Point mousePosition = mouse.getPosition();
-                int xIntersection = Math.round(mousePosition.getX() / 40);
-                int yIntersection = Math.round(mousePosition.getY() / 40);
+                int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
+                int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
                 System.out.println(xIntersection);
                 System.out.println(yIntersection);
                 System.out.println(mousePosition);
@@ -144,6 +160,7 @@ public class Main {
                 System.out.println(intersection);
                 Cercle pion = new Cercle(Couleur.BLEU, intersection, 5, true);
                 f.ajouter(pion);
+<<<<<<< HEAD
                 play = true;
             }
             f.rafraichir();
@@ -176,7 +193,15 @@ public class Main {
                   Cercle pion = new Cercle(Couleur.BLEU, intersection, 5, true);
                   f.ajouter(pion);
                   i=i+1;
+=======
+                i=i+1; 
+                whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
+                f.ajouter(whoPlays);   
+                f.rafraichir();
+               
+>>>>>>> 8405e23ad0211ea4847d3b583ed604e8600a268f
               }
+              
               f.rafraichir();
               try {
                   Thread.sleep(1);
