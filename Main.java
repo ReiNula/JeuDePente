@@ -39,6 +39,7 @@ public class Main {
         Texture game = new Texture("img/test.jpg",new Point(0,0));
         f.ajouter(game);
 
+        // Ajout Texte
         Texte gameName = new Texte(new String("Jeu de Pente"), textFont, new Point(middle,780));
         f.ajouter(gameName);
         Texte creators = new Texte(new String("Jeu developpe par Maud, Maxime, Laurine, Florian"), textFont, new Point(middle,20));
@@ -52,16 +53,6 @@ public class Main {
         Texte j2Menu = new Texte(new String("Joueur 2 : ") + j2.getName(), textFont50, new Point(middle,300));
         f.ajouter(j2Menu);
         f.rafraichir();
-
-        /* génération du tab statique 19*19*/
-        int[][] etat_damier;
-          
-        etat_damier = new int[19][19];
-        for (int i = 0;i < etat_damier.length; i++) {
-            for (int j = 0;j < etat_damier[i].length;j++) {
-                etat_damier[i][j] = 0;
-            }
-        } 
 
         // Passage à l'interface de jeu quand entrée est appuyé
         while(menu) {
@@ -84,6 +75,16 @@ public class Main {
 
 
 /************* Interface de jeu *************/
+        // Génération du tableau du damier de jeu
+        int[][] etat_damier;
+          
+        etat_damier = new int[19][19];
+        for (int i = 0;i < etat_damier.length; i++) {
+            for (int j = 0;j < etat_damier[i].length;j++) {
+                etat_damier[i][j] = 0;
+            }
+        }
+
         int interfaceHeight = 720;
         int interfaceWidth = 720;
         int widthMargin = (width-interfaceWidth)/2;
@@ -129,59 +130,64 @@ public class Main {
             g.nextplayer = 0;
         }
 
+        // Affichage au 1er tour des joueurs
         Texte whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
         f.ajouter(whoPlays);
-     
         f.rafraichir();
 
+        // Tour d'un joueur
         /* compteur de test */
         int i=0;
         /* changer la condition du while si la var était win existe */
         while(i<=40) {
+            // Clic glauche = action du joueur
             if (mouse.getClicGauche()) {
-            f.supprimer(whoPlays);
-            if (g.player == 0){
-                g.player = 1 ; 
-                g.nextplayer = 0;
-            }else{
-                g.player = 0;
-                g.nextplayer = 1;
-            }  
-            String change = playername ;
-            playername = nextplayername; 
-            nextplayername = change ;
-            Point mousePosition = mouse.getPosition();
-            int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
-            int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
-            int cases_x=(xIntersection-240)/40;
-            int cases_y=(yIntersection-40)/40;
-            etat_damier[cases_x][cases_y]=1;
-            System.out.println(etat_damier);
-            System.out.println("cases en abscysse :"+cases_x);
-            System.out.println("cases en ordonné :"+cases_y);
-            Point intersection = new Point(xIntersection, yIntersection);
-            i=i+1;
-            Boolean play = true;
-            //Affiche un pion bleu si c'est le joueur 1 qui joue et rouge pour le 2ème 
-            if (g.player == 0){
-                Cercle pion = new Cercle(Couleur.BLEU, intersection, 10, true);
-                f.ajouter(pion);
-            }else {
-                Cercle pion2 = new Cercle(Couleur.ROUGE, intersection, 10, true);
-                f.ajouter(pion2);
-            }
-            i=i+1; 
-            whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
-            f.ajouter(whoPlays);   
-            f.rafraichir();
-            }
-            
-            f.rafraichir();
-            try {
-                Thread.sleep(1);
-            } catch (Exception e) {
-
+                // Changement du joueur en jeu
+                f.supprimer(whoPlays);
+                if (g.player == 0) {
+                    g.player = 1 ; 
+                    g.nextplayer = 0;
+                    playername = j2.getName();
+                    nextplayername = j1.getName();
+                } else {
+                    g.player = 0;
+                    g.nextplayer = 1;
+                    playername = j1.getName();
+                    nextplayername = j2.getName();
                 }
+                // Récupération de l'intersection pour poser le pion
+                Point mousePosition = mouse.getPosition();
+                int xIntersection = Math.round((mousePosition.getX()+20)/40)*40;
+                int yIntersection = Math.round((mousePosition.getY()+20)/40)*40;
+                int cases_x = (xIntersection-240)/40;
+                int cases_y = (yIntersection-40)/40;
+                etat_damier[cases_x][cases_y] = 1;
+                for (int x = 0; x < etat_damier.length; x++) {
+                    for (int y = 0; y < etat_damier[x].length; y++) {
+                        System.out.print(etat_damier[x][y] + " ");
+                    }
+                    System.out.print("\n");
+                }
+                System.out.println("case en abscisse :"+cases_x);
+                System.out.println("case en ordonnée :"+cases_y);
+                Point intersection = new Point(xIntersection, yIntersection);
+                // Affiche un pion bleu si c'est le joueur 1 qui joue et rouge pour le 2ème 
+                if (g.player == 0){
+                    Cercle pion = new Cercle(Couleur.BLEU, intersection, 10, true);
+                    f.ajouter(pion);
+                }else {
+                    Cercle pion2 = new Cercle(Couleur.ROUGE, intersection, 10, true);
+                    f.ajouter(pion2);
+                }
+                // Changement sur l'interface de qui joue
+                whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
+                f.ajouter(whoPlays);   
+                f.rafraichir();
+                i++;
+            }
+                try {
+                    Thread.sleep(1);
+                } catch (Exception e) {}
           }
     }
 }
