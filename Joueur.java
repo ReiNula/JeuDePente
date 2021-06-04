@@ -10,6 +10,7 @@ public class Joueur {
     boolean active;
     boolean win;
     int pairCaptured;
+    int nombrePions;
 
 /************* Constructeurs *************/
     // Constructeur par défaut
@@ -19,6 +20,7 @@ public class Joueur {
         this.active = false;
         this.win =false;
         this.pairCaptured = 0;
+        this.nombrePions = 0;
     }
 
 /************* Setteurs *************/
@@ -55,6 +57,10 @@ public class Joueur {
         return this.pairCaptured;
     }
 
+    public int getNombrePions() {
+        return this.nombrePions;
+    }
+
 /************* Méthodes *************/
     /**
      * Permet au joueur de jouer
@@ -63,6 +69,15 @@ public class Joueur {
     public boolean getActive() {
         this.active = true;
         return this.active;
+    }
+
+    /**
+     * Ajoute un pion au compte de pions du joueur
+     * @return nombrePions, le nombre de pions que possède le joueur
+     */
+    public int oneMorePion() {
+        this.nombrePions = getNombrePions() + 1;
+        return this.nombrePions;
     }
 
     /**
