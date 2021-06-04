@@ -22,8 +22,10 @@ public class Main {
     // Création des joueurs et du jeu
         Joueur j1 = new Joueur();
         j1.setName();
+        j1.setColor();
         Joueur j2 = new Joueur();
         j2.setName();
+        j2.setColor();
         Game g = new Game(j1, j2);
         
 /************* Interface de menu *************/
@@ -180,21 +182,22 @@ public class Main {
                     g.nextplayer = 1;
                 }
             }  
-            //Affiche un pion bleu si c'est le joueur 1 qui joue et rouge pour le 2ème 
+            //Pose les pions selon qui joue
             if (etat_damier[cases_y][cases_x] == 0){
                 whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
                 if (g.player == 0){
                     System.out.println(g.player);
                     etat_damier[cases_y][cases_x] = 1;
-                    Cercle pion = new Cercle(Couleur.ROUGE, intersection, 10, true);
+                    Cercle pion = new Cercle(j2.getColor(), intersection, 10, true);
                     f.ajouter(pion);
                     j1.oneMorePion();
                 }else if(g.player == 1) {
                     System.out.println(g.player);
                     etat_damier[cases_y][cases_x] = 2;
-                    Cercle pion2 = new Cercle(Couleur.BLEU, intersection, 10, true);
+                    Cercle pion2 = new Cercle(j1.getColor(), intersection, 10, true);
                     f.ajouter(pion2);
                     j2.oneMorePion();
+                    System.out.println(j1);
                 }
                 // Changement sur l'interface de qui joue
                 pionsJ1 = new Texte(new String("Joueur 1 : " + j1.getNombrePions() + " pions "), textFont, new Point(110,600));

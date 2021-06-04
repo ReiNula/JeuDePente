@@ -2,25 +2,27 @@
 
 import java.util.Scanner;
 
+import MG2D.Couleur;
+
 public class Joueur {
 /************* Attributs *************/
     String name;
-    String color;
+    Couleur color;
     Scanner scanner = new Scanner (System.in);
     boolean active;
     boolean win;
     int pairCaptured;
     int nombrePions;
-
+    public static final Couleur[] tab = {Couleur.BLEU , Couleur.NOIR,Couleur.ROUGE, Couleur.JAUNE,Couleur.VERT, Couleur.BLANC };
 /************* Constructeurs *************/
     // Constructeur par défaut
     public Joueur() {
         this.name = "Joueur";
-        this.color = "NOIR";
         this.active = false;
         this.win =false;
         this.pairCaptured = 0;
         this.nombrePions = 0;
+        this.color= Couleur.NOIR; 
     }
 
 /************* Setteurs *************/
@@ -36,12 +38,12 @@ public class Joueur {
 
     /**
      * Assigne une couleur à l'attribut couleur 
-     * @return this.color, attribut de type String
+     * @return this.color
      */
     public void setColor() {
-        System.out.println("Entrez la couleur du joueur : ");
-        this.color = scanner.nextLine();
-        this.color = this.color.toUpperCase();
+        System.out.println("Choisissez votre couleur : 0/Bleu, 1/Noir, 2/Rouge, 3/Jaune, 4/Vert, 5/Blanc ");
+        int i = scanner.nextInt() ; 
+        this.color = tab[i];
     }
 
 /************* Getteurs *************/
@@ -49,7 +51,7 @@ public class Joueur {
         return this.name;
     }
 
-    public String getColor() {
+    public Couleur getColor() {
         return this.color;
     }
 
@@ -84,7 +86,7 @@ public class Joueur {
      * Affiche les caractéristiques de l'objet Joueur
      */
     public String toString() {
-        return "Joueur : " + this.name + ", " + this.color + ", " + this.active + ", " + this.win + ", " + this.pairCaptured;
+        return "Joueur : "+ this.name + ", " + this.color + ", " + this.active + ", " + this.win + ", " + this.pairCaptured;
     }
 }
 
