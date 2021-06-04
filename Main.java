@@ -197,7 +197,7 @@ public class Main {
                     Cercle pion2 = new Cercle(j1.getColor(), intersection, 10, true);
                     f.ajouter(pion2);
                     j2.oneMorePion();
-                    System.out.println(j1);
+                    
                 }
                 // Changement sur l'interface de qui joue
                 pionsJ1 = new Texte(new String("Joueur 1 : " + j1.getNombrePions() + " pions "), textFont, new Point(110,600));

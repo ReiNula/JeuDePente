@@ -13,7 +13,7 @@ public class Joueur {
     boolean win;
     int pairCaptured;
     int nombrePions;
-    public static final Couleur[] tab = {Couleur.BLEU , Couleur.NOIR,Couleur.ROUGE, Couleur.JAUNE,Couleur.VERT, Couleur.BLANC };
+    public static final Couleur[] tab = {Couleur.BLEU , Couleur.NOIR,Couleur.ROUGE, Couleur.JAUNE,Couleur.VERT, Couleur.ORANGE };
 /************* Constructeurs *************/
     // Constructeur par défaut
     public Joueur() {
@@ -41,7 +41,7 @@ public class Joueur {
      * @return this.color
      */
     public void setColor() {
-        System.out.println("Choisissez votre couleur : 0/Bleu, 1/Noir, 2/Rouge, 3/Jaune, 4/Vert, 5/Blanc ");
+        System.out.println("Choisissez votre couleur : 0/Bleu, 1/Noir, 2/Rouge, 3/Jaune, 4/Vert, 5/Orange ");
         int i = scanner.nextInt() ; 
         this.color = tab[i];
     }
