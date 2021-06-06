@@ -9,8 +9,8 @@ Comment utiliser le jeu :
 -Le tour suivant se met automatiquement dès que le joueur a plaçé son pion.
 
 Pourcentage d'effort : 
--Laurine Leulliette 
--Lucas Demaille
--Florian Lavie
--Maud Fasquel
--Maxime Van Eygen
+-Laurine Leulliette ->
+-Lucas Demaille ->
+-Florian Lavie ->
+-Maud Fasquel ->
+-Maxime Van Eygen ->
