@@ -136,8 +136,8 @@ public class Main {
         f.ajouter(whoPlays);
 
         // Affichage des pions que possède les joueurs
-        Texte pionsJ1 = new Texte(new String("J1 : " + j1.getName()+ " ,"+ j1.getNombrePions() + " pions "), textFont, new Point(110,600));
-        Texte pionsJ2 = new Texte(new String("J2 : " +j2.getName()+" ,"+ j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
+        Texte pionsJ1 = new Texte(new String("J1 : " + j1.getName()+ " a "+ j1.getNombrePions() + " pions "), textFont, new Point(110,600));
+        Texte pionsJ2 = new Texte(new String("J2 : " +j2.getName()+" a "+ j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
         f.ajouter(pionsJ1);
         f.ajouter(pionsJ2);
         f.rafraichir();
@@ -200,8 +200,8 @@ public class Main {
                     
                 }
                 // Changement sur l'interface de qui joue
-                pionsJ1 = new Texte(new String("J1 : " + j1.getName()+" " + j1.getNombrePions() + " pions "), textFont, new Point(110,600));
-                pionsJ2 = new Texte(new String("J2 : " + j2.getName() +" "+ j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
+                pionsJ1 = new Texte(new String("J1 : " + j1.getName()+" a " + j1.getNombrePions() + " pions "), textFont, new Point(110,600));
+                pionsJ2 = new Texte(new String("J2 : " + j2.getName() +" a "+ j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
                 f.ajouter(pionsJ1);
                 f.ajouter(pionsJ2);
                 f.ajouter(whoPlays);   
@@ -212,11 +212,39 @@ public class Main {
             }
 
             // Changement sur l'interface de qui joue
-            i++;
         }
             try {
                 Thread.sleep(1);
             } catch (Exception e) {}
-      }
+
+        }
+
+
+    /****Interface de victoire */
+      boolean menu2 = true;
+      Texture game2 = new Texture("img/victoire.jpg",new Point(0,0));
+      f.ajouter(game2);
+      while(menu2) {
+        if (keyboard.getEntreeTape()) {
+            f.effacer();
+            f.ajouter(game2);
+            menu2 = false;
+            Texte winner = new Texte(new String("Le joueur : ") + j1.getName(), textFont50, new Point(middle,500));
+            f.ajouter(winner);
+        }
+        f.rafraichir();
+        try {
+            Thread.sleep(1);
+        } catch (Exception e) {
+
+            }
     }
+    
+     
+
+
+
+
+    }
+
 }
