@@ -1,4 +1,7 @@
-# Projet de jeu de Pente
+# Projet de jeu de Pente -Groupe Bravo 
+
+Dans le zip, nous avons laissé le dossier MG2D, car pour exécuter le programme, nous avons besoin du dossier MG2D à la racine.
+
 Comment complier le projet : 
     Vous compilez la classe Main et vous l'exécutez pour démarrer le jeu.
 

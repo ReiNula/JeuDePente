@@ -75,7 +75,6 @@ public class Main {
                 }
         }
 
-
 /************* Interface de jeu *************/
         // Génération du tableau du damier de jeu
         int[][] etat_damier;
@@ -137,8 +136,8 @@ public class Main {
         f.ajouter(whoPlays);
 
         // Affichage des pions que possède les joueurs
-        Texte pionsJ1 = new Texte(new String("Joueur 1 : " + j1.getNombrePions() + " pions "), textFont, new Point(110,600));
-        Texte pionsJ2 = new Texte(new String("Joueur 2 : " + j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
+        Texte pionsJ1 = new Texte(new String("J1 : " + j1.getName()+ " ,"+ j1.getNombrePions() + " pions "), textFont, new Point(110,600));
+        Texte pionsJ2 = new Texte(new String("J2 : " +j2.getName()+" ,"+ j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
         f.ajouter(pionsJ1);
         f.ajouter(pionsJ2);
         f.rafraichir();
@@ -182,6 +181,7 @@ public class Main {
                     g.nextplayer = 1;
                 }
             }  
+           
             //Pose les pions selon qui joue
             if (etat_damier[cases_y][cases_x] == 0){
                 whoPlays = new Texte(new String("Le joueur " + (g.player + 1) + " " + playername + " joue et le joueur " + (g.nextplayer +1) + " " + nextplayername + " joue au prochain tour"), textFont, new Point(middle,20));
@@ -200,8 +200,8 @@ public class Main {
                     
                 }
                 // Changement sur l'interface de qui joue
-                pionsJ1 = new Texte(new String("Joueur 1 : " + j1.getNombrePions() + " pions "), textFont, new Point(110,600));
-                pionsJ2 = new Texte(new String("Joueur 2 : " + j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
+                pionsJ1 = new Texte(new String("J1 : " + j1.getName()+" " + j1.getNombrePions() + " pions "), textFont, new Point(110,600));
+                pionsJ2 = new Texte(new String("J2 : " + j2.getName() +" "+ j2.getNombrePions() + " pions "), textFont, new Point(1100,600));
                 f.ajouter(pionsJ1);
                 f.ajouter(pionsJ2);
                 f.ajouter(whoPlays);   
