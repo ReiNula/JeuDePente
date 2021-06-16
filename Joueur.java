@@ -13,11 +13,13 @@ public class Joueur {
     boolean win;
     int pairCaptured;
     int nombrePions;
+    int numplayer;
     public static final Couleur[] tab = {Couleur.BLEU , Couleur.NOIR,Couleur.ROUGE, Couleur.JAUNE,Couleur.VERT, Couleur.ORANGE };
 /************* Constructeurs *************/
     // Constructeur par défaut
     public Joueur() {
         this.name = "Joueur";
+        this.numplayer = 0;
         this.active = false;
         this.win =false;
         this.pairCaptured = 0;
@@ -63,6 +65,10 @@ public class Joueur {
         return this.nombrePions;
     }
 
+    public int getNumplayer() {
+        return this.numplayer;
+    }
+
 /************* Méthodes *************/
     /**
      * Permet au joueur de jouer
@@ -86,7 +92,7 @@ public class Joueur {
      * Affiche les caractéristiques de l'objet Joueur
      */
     public String toString() {
-        return "Joueur : "+ this.name + ", " + this.color + ", " + this.active + ", " + this.win + ", " + this.pairCaptured;
+        return "Joueur : " + this.numplayer  + ", " + this.name + ", " + this.color + ", " + this.active + ", " + this.win + ", " + this.pairCaptured;
     }
 }
 
